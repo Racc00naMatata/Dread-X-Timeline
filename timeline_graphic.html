@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 50px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 25px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-year {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 10;
+            border: 5px solid white;
+        }
+
+        .event-title {
+            font-size: 1.1em;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .event-ago {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .event-list {
+            list-style: none;
+        }
+
+        .event-list li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .event-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: row;
+            }
+
+            .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                width: calc(100% - 100px);
+                margin-left: 100px;
+                margin-right: 0;
+            }
+
+            .timeline-year {
+                left: 30px;
+                transform: none;
+                width: 60px;
+                height: 60px;
+                font-size: 1em;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📜 Oś Czasu Wydarzeń</h1>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">1446</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Narodziny Garpa</li>
+                        <li>Narodziny Rocksa</li>
+                    </ul>
+                    <div class="event-ago">74 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1447</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Narodziny Rogera</li>
+                    </ul>
+                    <div class="event-ago">73 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1453</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Narodziny Hacka</li>
+                    </ul>
+                    <div class="event-ago">67 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1471</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Narodziny Ivankowa</li>
+                    </ul>
+                    <div class="event-ago">49 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1476</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Narodziny bliźniaków Xebec</li>
+                    </ul>
+                    <div class="event-ago">44 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1477</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Narodziny Magellana</li>
+                    </ul>
+                    <div class="event-ago">43 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1486</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Narodziny Mayera</li>
+                        <li>God's Valley</li>
+                    </ul>
+                    <div class="event-ago">34 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1495</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Narodziny Inazumy</li>
+                    </ul>
+                    <div class="event-ago">25 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1496</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Narodziny Ortega</li>
+                    </ul>
+                    <div class="event-ago">24 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1497</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Narodziny Wuko</li>
+                    </ul>
+                    <div class="event-ago">23 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1498</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Narodziny Washa</li>
+                    </ul>
+                    <div class="event-ago">22 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1500</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Egzekucja Rogera</li>
+                        <li>Narodziny Auriela</li>
+                    </ul>
+                    <div class="event-ago">20 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1502</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Narodziny Ace'a</li>
+                        <li>Narodziny Sabo</li>
+                    </ul>
+                    <div class="event-ago">18 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1504</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Narodziny Kilo</li>
+                        <li>Narodziny Grima</li>
+                    </ul>
+                    <div class="event-ago">16 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1505</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Narodziny Luffy'iego</li>
+                    </ul>
+                    <div class="event-ago">15 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1509</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Retrosy Ortega (lat 13, Mayer lat 23)</li>
+                    </ul>
+                    <div class="event-ago">11 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1510</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Retrosy Washa (lat 12)</li>
+                    </ul>
+                    <div class="event-ago">10 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1512</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Grey Terminal ("wskrzeszenie Cat po 26 latach)</li>
+                    </ul>
+                    <div class="event-ago">8 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1516</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Cat poznaje Ivankowa (retrosy Momoiro)</li>
+                    </ul>
+                    <div class="event-ago">4 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1518</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Retrosy CP (Cat i Auriel spierdalają)</li>
+                    </ul>
+                    <div class="event-ago">2 lat temu</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1520</div>
+                <div class="timeline-content">
+                    <ul class="event-list">
+                        <li>Cat dołącza do Dread X</li>
+                    </ul>
+                    <div class="event-ago">Obecnie</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
